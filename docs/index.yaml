@@ -3,7 +3,7 @@ entries:
   istio:
   - apiVersion: v1
     appVersion: 1.3.0
-    created: "2019-09-16T14:31:30.250499+08:00"
+    created: "2019-09-16T14:39:51.262781+08:00"
     description: Helm chart for all istio components
     digest: 549a4009b6aed1f027b7c08634d578d5206e7623a2ad18927dc0182e1cecfe19
     engine: gotpl
@@ -22,4 +22,22 @@ entries:
     urls:
     - https://tiggerlee2.github.io/istio-chart/istio-1.3.0.tgz
     version: 1.3.0
-generated: "2019-09-16T14:31:30.239047+08:00"
+  istio-cni:
+  - apiVersion: v1
+    appVersion: 1.3.0
+    created: "2019-09-16T14:39:51.263608+08:00"
+    description: Helm chart for istio-cni components
+    digest: 4fecb0e35420bc55100abfe4a898501857b83e576ff7811f2395bf39c3db098c
+    engine: gotpl
+    icon: https://istio.io/favicons/android-192x192.png
+    keywords:
+    - istio-cni
+    - istio
+    name: istio-cni
+    sources:
+    - http://github.com/istio/cni
+    tillerVersion: '>=2.7.2'
+    urls:
+    - https://tiggerlee2.github.io/istio-chart/istio-cni-1.3.0.tgz
+    version: 1.3.0
+generated: "2019-09-16T14:39:51.248634+08:00"
