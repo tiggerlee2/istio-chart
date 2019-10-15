@@ -3,7 +3,7 @@ entries:
   istio:
   - apiVersion: v1
     appVersion: 1.3.3
-    created: "2019-10-15T17:10:46.739282+08:00"
+    created: "2019-10-15T17:22:06.321779+08:00"
     description: Helm chart for all istio components
     digest: f57b389418ed5fb2517813e9baaa3fd40418fd3d5bc74cf810608ba29f79db50
     engine: gotpl
@@ -24,7 +24,7 @@ entries:
     version: 1.3.3
   - apiVersion: v1
     appVersion: 1.3.0
-    created: "2019-10-15T17:10:46.730735+08:00"
+    created: "2019-10-15T17:22:06.283007+08:00"
     description: Helm chart for all istio components
     digest: 549a4009b6aed1f027b7c08634d578d5206e7623a2ad18927dc0182e1cecfe19
     engine: gotpl
@@ -45,7 +45,7 @@ entries:
     version: 1.3.0
   - apiVersion: v1
     appVersion: 1.3.0
-    created: "2019-10-15T17:10:46.719594+08:00"
+    created: "2019-10-15T17:22:06.267535+08:00"
     description: Helm chart for all istio components
     digest: 5b56f6d41b7dc4e3739ffdbaafabfe34cee6b2702e8f4b7014a286ab0c360ed6
     engine: gotpl
@@ -66,8 +66,25 @@ entries:
     version: 1.3.0-custom
   istio-cni:
   - apiVersion: v1
+    appVersion: 1.3.3
+    created: "2019-10-15T17:22:06.325486+08:00"
+    description: Helm chart for istio-cni components
+    digest: 61ad0065fce5c25eb6ffd41ad4cd9b7c2593fe580d89fd594fa2361fe5298ec3
+    engine: gotpl
+    icon: https://istio.io/favicons/android-192x192.png
+    keywords:
+    - istio-cni
+    - istio
+    name: istio-cni
+    sources:
+    - http://github.com/istio/cni
+    tillerVersion: '>=2.7.2'
+    urls:
+    - https://tiggerlee2.github.io/istio-chart/istio-cni-1.3.3.tgz
+    version: 1.3.3
+  - apiVersion: v1
     appVersion: 1.3.0
-    created: "2019-10-15T17:10:46.740414+08:00"
+    created: "2019-10-15T17:22:06.324144+08:00"
     description: Helm chart for istio-cni components
     digest: 4fecb0e35420bc55100abfe4a898501857b83e576ff7811f2395bf39c3db098c
     engine: gotpl
@@ -84,8 +101,25 @@ entries:
     version: 1.3.0
   istio-init:
   - apiVersion: v1
+    appVersion: 1.3.3
+    created: "2019-10-15T17:22:06.33333+08:00"
+    description: Helm chart to initialize Istio CRDs
+    digest: 65fff59eca0a66375d9fd8f186b91bf977fd3a38269476c823b8efb3e7ba563f
+    engine: gotpl
+    icon: https://istio.io/favicons/android-192x192.png
+    keywords:
+    - istio
+    - crd
+    name: istio-init
+    sources:
+    - http://github.com/istio/istio
+    tillerVersion: '>=2.7.2-0'
+    urls:
+    - https://tiggerlee2.github.io/istio-chart/istio-init-1.3.3.tgz
+    version: 1.3.3
+  - apiVersion: v1
     appVersion: 1.3.0
-    created: "2019-10-15T17:10:46.741615+08:00"
+    created: "2019-10-15T17:22:06.327404+08:00"
     description: Helm chart to initialize Istio CRDs
     digest: e1088c0b3cb0f8c00e0eb8679229b5792deb2e2886dd03bcfe8e2ae077bf30ed
     engine: gotpl
@@ -100,4 +134,4 @@ entries:
     urls:
     - https://tiggerlee2.github.io/istio-chart/istio-init-1.3.0.tgz
     version: 1.3.0
-generated: "2019-10-15T17:10:46.704371+08:00"
+generated: "2019-10-15T17:22:06.251145+08:00"
