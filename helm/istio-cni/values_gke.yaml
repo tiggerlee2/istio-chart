@@ -1,5 +1,5 @@
 hub: docker.io/istio
-tag: 1.4.2
+tag: 1.4.6
 pullPolicy: Always
 
 logLevel: info
