@@ -126,6 +126,9 @@ spec:
                   key: cni_network_config
             - name: CNI_NET_DIR
               value: {{ default "/etc/cni/net.d" .Values.cniConfDir }}
+            # Deploy as a standalone CNI plugin or as chained?
+            - name: CHAINED_CNI_PLUGIN
+              value: "{{ .Values.chained }}"
           volumeMounts:
             - mountPath: /host/opt/cni/bin
               name: cni-bin-dir
@@ -134,7 +137,7 @@ spec:
 {{- if .Values.repair.enabled }}
         # This container repairs broken CNI pods
         - name: repair-cni
-          image: {{ .Values.repair.hub }}/install-cni:{{ .Values.repair.tag }}
+          image: {{ default .Values.hub .Values.repair.hub }}/install-cni:{{ default .Values.tag .Values.repair.tag }}
           imagePullPolicy: {{ .Values.pullPolicy }}
           command:
           - /opt/cni/bin/istio-cni-repair

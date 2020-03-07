@@ -96,8 +96,6 @@ certmanager:
 #
 istio_cni:
   enabled: false
-  repair:
-    enabled: true
 
 # addon Istio CoreDNS configuration
 #
@@ -112,7 +110,7 @@ global:
   hub: docker.io/istio
 
   # Default tag for Istio images.
-  tag: 1.4.6
+  tag: 1.5.0
 
   # Comma-separated minimum per-scope logging level of messages to output, in the form of <scope>:<level>,<scope>:<level>
   # The control plane has different scopes depending on component, but can configure default log level across all components
@@ -137,15 +135,6 @@ global:
     enableHttps: false
 
   proxy:
-    # Configuration for the proxy init container
-    init:
-      resources:
-        limits:
-          cpu: 100m
-          memory: 50Mi
-        requests:
-          cpu: 10m
-          memory: 10Mi
     # use fully qualified image names for alternate path to proxy.
     image: proxyv2
 
@@ -207,6 +196,9 @@ global:
     # Configure the DNS refresh rate for Envoy cluster of type STRICT_DNS
     # This must be given it terms of seconds. For example, 300s is valid but 5m is invalid.
     dnsRefreshRate: 300s
+
+    # Specifies the path to the outlier event log.
+    outlierLogPath: # example: /dev/stdout
 
     # Automatic protocol detection uses a set of heuristics to
     # determine whether the connection is using TLS or not (on the
@@ -306,6 +298,13 @@ global:
   proxy_init:
     # Base name for the istio-init container, used to configure iptables.
     image: proxyv2
+    resources:
+      limits:
+        cpu: 100m
+        memory: 50Mi
+      requests:
+        cpu: 10m
+        memory: 10Mi
 
   # imagePullPolicy is applied to istio control plane components.
   # local tests require IfNotPresent, to avoid uploading to dockerhub.
@@ -370,7 +369,7 @@ global:
     # or its DestinationRule does not have TLSSettings specified, Istio configures client side
     # TLS configuration automatically, based on the server side mTLS authentication policy and the
     # availibity of sidecars.
-    auto: false
+    auto: true
 
   # Lists the secrets you need to use to pull Istio images from a private registry.
   imagePullSecrets: []

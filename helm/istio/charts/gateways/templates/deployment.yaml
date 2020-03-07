@@ -127,8 +127,10 @@ spec:
           - --lightstepAccessToken
           - {{ $.Values.global.tracer.lightstep.accessToken }}
           - --lightstepSecure={{ $.Values.global.tracer.lightstep.secure }}
+          {{- if $.Values.global.tracer.lightstep.secure }}
           - --lightstepCacertPath
           - {{ $.Values.global.tracer.lightstep.cacertPath }}
+          {{- end }}
         {{- else if eq $.Values.global.proxy.tracer "zipkin" }}
           - --zipkinAddress
           {{- if $.Values.global.tracer.zipkin.address }}
@@ -179,10 +181,6 @@ spec:
           - istio-pilot.{{ $.Values.global.istioNamespace }}:15010
           {{- else }}
           - istio-pilot:15010
-          {{- end }}
-          {{- if $spec.applicationPorts }}
-          - --applicationPorts
-          - "{{ $spec.applicationPorts }}"
           {{- end }}
         {{- end }}
         {{- if $.Values.global.trustDomain }}
@@ -278,15 +276,15 @@ spec:
             value: "{{ $.Values.global.tracer.stackdriver.debug }}"
           {{- if $.Values.global.tracer.stackdriver.maxNumberOfAnnotations }}
           - name: STACKDRIVER_TRACING_MAX_NUMBER_OF_ANNOTATIONS
-            value: "{{ $.Values.global.tracer.stackdriver.maxNumberOfAnnotations.Value }}"
+            value: "{{ $.Values.global.tracer.stackdriver.maxNumberOfAnnotations }}"
           {{- end }}
           {{- if $.Values.global.tracer.stackdriver.maxNumberOfAttributes }}
           - name: STACKDRIVER_TRACING_MAX_NUMBER_OF_ATTRIBUTES
-            value: "{{ $.Values.global.tracer.stackdriver.maxNumberOfAttributes.Value }}"
+            value: "{{ $.Values.global.tracer.stackdriver.maxNumberOfAttributes }}"
           {{- end }}
           {{- if $.Values.global.tracer.stackdriver.maxNumberOfMessageEvents }}
           - name: STACKDRIVER_TRACING_MAX_NUMBER_OF_MESSAGE_EVENTS
-            value: "{{ $.Values.global.tracer.stackdriver.maxNumberOfMessageEvents.Value }}"
+            value: "{{ $.Values.global.tracer.stackdriver.maxNumberOfMessageEvents }}"
           {{- end }}
           {{- end }}
           {{- if $spec.sds }}
