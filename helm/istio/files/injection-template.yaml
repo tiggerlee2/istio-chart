@@ -1,4 +1,4 @@
-rewriteAppHTTPProbe: {{ valueOrDefault .Values.sidecarInjectorWebhook.rewriteAppHTTPProbe false }}
+rewriteAppHTTPProbe: {{ valueOrDefault .Values.sidecarInjectorWebhook.rewriteAppHTTPProbe true }}
 initContainers:
 {{ if ne (annotation .ObjectMeta `sidecar.istio.io/interceptionMode` .ProxyConfig.InterceptionMode) `NONE` }}
 {{ if .Values.istio_cni.enabled -}}
@@ -59,12 +59,13 @@ initContainers:
   {{- end }}
       drop:
       - ALL
-    readOnlyRootFilesystem: false
   {{- if not .Values.istio_cni.enabled }}
+    readOnlyRootFilesystem: false
     runAsGroup: 0
     runAsNonRoot: false
     runAsUser: 0
   {{- else }}
+    readOnlyRootFilesystem: true
     runAsGroup: 1337
     runAsUser: 1337
     runAsNonRoot: true
@@ -204,6 +205,14 @@ containers:
           {{- end }}
         {{- end}}
       {{- end}}
+      ]
+  - name: ISTIO_META_APP_CONTAINERS
+    value: |-
+      [
+        {{- range $index, $container := .Spec.Containers }}
+          {{- if ne $index 0}},{{- end}}
+          {{ $container.Name }}
+        {{- end}}
       ]
   - name: ISTIO_META_CLUSTER_ID
     value: "{{ valueOrDefault .Values.global.multiCluster.clusterName `Kubernetes` }}"
